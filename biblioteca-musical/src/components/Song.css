@@ -1,0 +1,80 @@
+/* Song Styles */
+.song {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border: 1px solid #e1e5e9;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.8rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.song:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.song-info {
+  flex: 1;
+}
+
+.song-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 0.3rem 0;
+  color: #333;
+}
+
+.song-artist {
+  font-size: 1rem;
+  margin: 0 0 0.2rem 0;
+  color: #666;
+  font-weight: 500;
+}
+
+.song-album {
+  font-size: 0.9rem;
+  margin: 0;
+  color: #888;
+  font-style: italic;
+}
+
+.song-duration {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+  font-weight: 600;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.song-actions {
+  display: flex;
+  align-items: center;
+}
+
+.add-to-library-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-to-library-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+}
+
+.add-to-library-btn:active {
+  transform: translateY(0);
+}
