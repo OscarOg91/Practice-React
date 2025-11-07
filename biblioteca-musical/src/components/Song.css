@@ -1,7 +1,5 @@
-/* Song Styles */
 .song {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   background: white;
   border: 1px solid #e1e5e9;
@@ -10,6 +8,7 @@
   margin-bottom: 0.8rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
+  gap: 1rem;
 }
 
 .song:hover {
@@ -17,8 +16,29 @@
   transform: translateY(-2px);
 }
 
+.song-image {
+  flex-shrink: 0;
+}
+
+.album-thumbnail {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .song-info {
   flex: 1;
+}
+
+.song-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.song-title-link:hover .song-title {
+  color: #4CAF50;
 }
 
 .song-title {
@@ -26,6 +46,7 @@
   font-weight: 600;
   margin: 0 0 0.3rem 0;
   color: #333;
+  transition: color 0.3s ease;
 }
 
 .song-artist {
@@ -35,25 +56,17 @@
   font-weight: 500;
 }
 
-.song-album {
+.song-year {
   font-size: 0.9rem;
   margin: 0;
   color: #888;
   font-style: italic;
 }
 
-.song-duration {
-  display: flex;
-  align-items: center;
-  margin-right: 1rem;
-  font-weight: 600;
-  color: #555;
-  font-size: 0.95rem;
-}
-
 .song-actions {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
 .add-to-library-btn {
@@ -77,4 +90,48 @@
 
 .add-to-library-btn:active {
   transform: translateY(0);
+}
+
+.details-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+}
+
+.details-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  background: #45a049;
+}
+
+.details-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .song {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  
+  .song-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .add-to-library-btn,
+  .details-btn {
+    flex: 1;
+    text-align: center;
+  }
 }

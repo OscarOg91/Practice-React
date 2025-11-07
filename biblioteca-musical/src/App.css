@@ -1,4 +1,3 @@
-/* Global Styles */
 * {
   margin: 0;
   padding: 0;
@@ -24,7 +23,6 @@ body {
   gap: 2rem;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .App {
     padding: 1rem;
