@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyle, AppContainer, MainContent } from './styles/GlobalStyles';
+import theme from './styles/theme';
 import Header from './components/Header';
 import SearchResults from './components/SearchResults';
 import Library from './components/Library';
@@ -51,7 +53,7 @@ const HomePage = () => {
   return (
     <>
       <Header />
-      <main className="main-content">
+      <MainContent>
         <SearchBar onSearch={handleSearch} loading={loading} />
         <SearchResults 
           canciones={albums}
@@ -63,21 +65,24 @@ const HomePage = () => {
         <Library 
           canciones={bibliotecaPersonal}
         />
-      </main>
+      </MainContent>
     </>
   );
 };
 
 const App = () => {
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/song/:id" element={<SongDetail />} />
-        </Routes>
-      </div>
-    </Router>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Router>
+        <AppContainer>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/song/:id" element={<SongDetail />} />
+          </Routes>
+        </AppContainer>
+      </Router>
+    </ThemeProvider>
   );
 };
 

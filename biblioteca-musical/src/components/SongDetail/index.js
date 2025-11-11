@@ -1,8 +1,23 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
-import useFetch from '../hooks/useFetch';
-import { audioDbApi } from '../utils/apiUtils';
-import './SongDetail.css';
+import { useParams } from 'react-router-dom';
+import useFetch from '../../hooks/useFetch';
+import { audioDbApi } from '../../utils/apiUtils';
+import {
+  SongDetailContainer,
+  SongDetailHeader,
+  BackLink,
+  SongDetailContent,
+  AlbumImageContainer,
+  AlbumCover,
+  AlbumInfo,
+  AlbumTitle,
+  ArtistName,
+  AlbumDetails,
+  AlbumDescription,
+  LoadingContainer,
+  ErrorContainer,
+  RetryButton
+} from './styles';
 
 const SongDetail = () => {
   const { id } = useParams();
@@ -12,66 +27,65 @@ const SongDetail = () => {
 
   if (loading) {
     return (
-      <div className="song-detail-container">
-        <div className="loading-message">
+      <SongDetailContainer>
+        <LoadingContainer>
           <p>Cargando detalles del álbum...</p>
-        </div>
-      </div>
+        </LoadingContainer>
+      </SongDetailContainer>
     );
   }
 
   if (error) {
     return (
-      <div className="song-detail-container">
-        <div className="error-message">
+      <SongDetailContainer>
+        <ErrorContainer>
           <p>Hubo un problema al cargar los detalles. Intenta nuevamente.</p>
-          <button onClick={refetch} className="retry-button">
+          <RetryButton onClick={refetch}>
             Reintentar
-          </button>
-        </div>
-      </div>
+          </RetryButton>
+        </ErrorContainer>
+      </SongDetailContainer>
     );
   }
 
   if (!data || !data.album || data.album.length === 0) {
     return (
-      <div className="song-detail-container">
-        <div className="no-data-message">
+      <SongDetailContainer>
+        <ErrorContainer>
           <p>No se encontraron detalles para este álbum.</p>
-          <Link to="/" className="back-link">
+          <BackLink to="/">
             Volver a la búsqueda
-          </Link>
-        </div>
-      </div>
+          </BackLink>
+        </ErrorContainer>
+      </SongDetailContainer>
     );
   }
 
   const album = data.album[0];
 
   return (
-    <div className="song-detail-container">
-      <div className="song-detail-header">
-        <Link to="/" className="back-link">
+    <SongDetailContainer>
+      <SongDetailHeader>
+        <BackLink to="/">
           ← Volver a los resultados
-        </Link>
-      </div>
+        </BackLink>
+      </SongDetailHeader>
       
-      <div className="song-detail-content">
-        <div className="album-image">
+      <SongDetailContent>
+        <AlbumImageContainer>
           {album.strAlbumThumb && (
-            <img 
+            <AlbumCover 
               src={album.strAlbumThumb} 
               alt={album.strAlbum}
-              className="album-cover"
             />
           )}
-        </div>
+        </AlbumImageContainer>
         
-        <div className="album-info">
-          <h1 className="album-title">{album.strAlbum}</h1>
-          <h2 className="artist-name">{album.strArtist}</h2>
+        <AlbumInfo>
+          <AlbumTitle>{album.strAlbum}</AlbumTitle>
+          <ArtistName>{album.strArtist}</ArtistName>
           
-          <div className="album-details">
+          <AlbumDetails>
             {album.intYearReleased && (
               <p><strong>Año de lanzamiento:</strong> {album.intYearReleased}</p>
             )}
@@ -84,17 +98,17 @@ const SongDetail = () => {
             {album.strReleaseFormat && (
               <p><strong>Formato:</strong> {album.strReleaseFormat}</p>
             )}
-          </div>
+          </AlbumDetails>
           
           {album.strDescriptionEN && (
-            <div className="album-description">
+            <AlbumDescription>
               <h3>Descripción</h3>
               <p>{album.strDescriptionEN}</p>
-            </div>
+            </AlbumDescription>
           )}
-        </div>
-      </div>
-    </div>
+        </AlbumInfo>
+      </SongDetailContent>
+    </SongDetailContainer>
   );
 };
 
